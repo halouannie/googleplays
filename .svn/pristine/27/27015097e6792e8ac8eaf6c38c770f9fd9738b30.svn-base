@@ -1,0 +1,55 @@
+package com.annie.googleplay.ui.fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.annie.googleplay.adapter.HomeAdapter;
+import com.annie.googleplay.api.DataEngine;
+import com.annie.googleplay.bean.AppInfo;
+import com.annie.googleplay.bean.HomeBean;
+import com.annie.googleplay.util.CommonUtil;
+import com.annie.googleplay.util.UrlUtil;
+
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TextView;
+
+public class HomeFragment extends BaseFragment {
+
+	List<AppInfo> list = new ArrayList<AppInfo>();
+	private HomeAdapter homeAdapter;
+	@Override
+	public View getSuccessPage() {
+		ListView listView = new ListView(getActivity());
+		//去掉listview自带的蓝色状态选择器
+		listView.setSelector(android.R.color.transparent);
+		//去掉liseview自带的分割线divider
+		listView.setDividerHeight(0); //代码中只设置高度就可以了
+		
+		//为listview设置adapter
+		homeAdapter = new HomeAdapter(list);
+		listView.setAdapter(homeAdapter);
+		return listView;
+	}
+
+	@Override 
+	public Object requestData() {
+		HomeBean homeBeanData = DataEngine.getInstance().loadBeanData(UrlUtil.home, HomeBean.class);
+		if (homeBeanData != null) {
+			//更新数据
+			list.addAll(homeBeanData.list);
+			
+			CommonUtil.runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					//更新UI,也就是更新adapter,只要数据更新了,就要通知adapter!!!
+					homeAdapter.notifyDataSetChanged();
+				}
+			});
+		}
+		
+		//System.out.println(homeBeanData.toString());
+		return homeBeanData;
+		//return new String("aaaaaaaa");  //模拟有数据的情况
+	}
+}

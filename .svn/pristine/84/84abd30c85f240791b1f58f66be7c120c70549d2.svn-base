@@ -1,0 +1,59 @@
+package com.annie.googleplay.activity;
+
+import com.annie.googleplay.R;
+import com.annie.googleplay.R.layout;
+import com.annie.googleplay.R.menu;
+
+import android.R.attr;
+import android.os.Bundle;
+import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class AppDetailActivity extends ActionBarActivity {
+
+	private String packageName;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_app_detail);
+		
+		//获取传递的值
+		packageName = getIntent().getStringExtra("packageName");
+		//设置actionba
+		setActionBar();
+	}
+
+	/**
+	 * @Description: 设置actionba
+	 * @param:
+	 */
+	private void setActionBar() {
+		//创建actionbar对象
+		ActionBar actionBar = getSupportActionBar();
+		//设置actionbar的标题
+		actionBar.setTitle(getString(R.string.app_detail));
+		
+		//设置actionbar的home按钮可以被点击
+		actionBar.setDisplayHomeAsUpEnabled(true); //设置home按钮可以被点击
+		actionBar.setDisplayShowHomeEnabled(true); //设置home按钮可用
+	}
+	 
+	/**
+	 * 当点击actionbar的home按钮或菜单时此方法会被调用
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			//当点击actionbar的home按钮时,销毁当前activity
+			finish();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+}

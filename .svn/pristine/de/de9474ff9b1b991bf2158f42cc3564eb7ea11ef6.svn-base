@@ -1,0 +1,41 @@
+package com.annie.googleplay.adapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+
+public class BasicAdapter<T> extends BaseAdapter {
+	
+	List<T> list = new ArrayList<T>();
+	//通过构造方法将所需要的集合传进来
+	public BasicAdapter(List<T> list) {
+		super();
+		this.list = list;
+	}
+
+	@Override
+	public int getCount() {
+		return list.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return list.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	//需要子类自己去重写
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		return null;
+	}
+
+}

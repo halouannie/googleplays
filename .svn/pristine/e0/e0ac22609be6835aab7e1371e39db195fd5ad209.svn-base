@@ -1,0 +1,42 @@
+package com.annie.googleplay.ui.fragment;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+public abstract class BaseFragment extends Fragment {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		LaodingPage laodingPage = new LaodingPage(getActivity()) {
+			
+			@Override
+			public View createSuccessPage() {
+				//具体的加载完成的界面各不相同,所以应交由子类去 实现
+				return getSuccessPage();
+			}
+			
+			@Override
+			protected Object loadData() {
+				//各个界面需要请求的数据各不相同,所以需要子类自己去实现
+				return requestData();
+			}
+			
+		};
+		return laodingPage;
+	}
+	
+	/**
+	 * 加载完成的界面,让子类自己去实现
+	 */
+	public abstract View getSuccessPage();
+	
+	/**
+	 * 具体请求数据的方法,让子类自己去实现
+	 */
+	public abstract Object requestData();
+
+}

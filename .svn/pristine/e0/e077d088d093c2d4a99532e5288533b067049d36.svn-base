@@ -1,0 +1,16 @@
+package com.annie.googleplay.bean;
+
+import java.util.ArrayList;
+
+public class HomeBean {
+
+	public ArrayList<String> picture;
+	public ArrayList<AppInfo> list;
+	
+	@Override
+	public String toString() {
+		return "HomeBean [picture=" + picture + ", list=" + list + "]";
+	}
+	
+	
+}

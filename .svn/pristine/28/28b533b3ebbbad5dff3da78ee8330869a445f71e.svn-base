@@ -1,0 +1,6 @@
+package com.annie.googleplay.util;
+
+public interface UrlUtil {
+	String SERVER_HOST = "http://127.0.0.1:8090/";
+	String home = SERVER_HOST + "home?index=0";
+}

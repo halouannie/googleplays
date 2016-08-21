@@ -1,0 +1,10 @@
+package com.annie.googleplay.bean;
+
+import java.util.List;
+
+public class CategoryBean {
+	
+	public String title;
+	public List<ChildCategory> infos;
+
+}

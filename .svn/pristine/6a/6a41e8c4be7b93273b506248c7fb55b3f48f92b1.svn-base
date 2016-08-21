@@ -1,0 +1,12 @@
+package com.annie.googleplay.bean;
+
+public class ChildCategory {
+	
+    	public String url1;
+		public String url2;
+		public String url3;
+		public String name1;
+		public String name2;
+		public String name3;
+
+}

@@ -1,0 +1,45 @@
+package com.annie.googleplay.holder;
+
+import android.text.format.Formatter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+
+import com.annie.googleplay.R;
+import com.annie.googleplay.bean.AppInfo;
+import com.annie.googleplay.global.GooglePlayApplication;
+
+public class HomeHolder extends BaseHolder<AppInfo> {
+	TextView appName, appSize, appDes;
+	ImageView appIcon;
+	RatingBar star;
+
+	/**
+	 * 初始化holderview
+	 */
+	@Override
+	public View initView() {
+		View view = View.inflate(GooglePlayApplication.context,R.layout.homefragment_item, null);
+
+		appDes = (TextView) view.findViewById(R.id.homefragment_tv_des);
+		appIcon = (ImageView) view.findViewById(R.id.homefragment_iv_icon);
+		appName = (TextView) view.findViewById(R.id.homefragment_tv_name);
+		appSize = (TextView) view.findViewById(R.id.homefragment_tv_size);
+		star = (RatingBar) view.findViewById(R.id.homefragment_rg_star);
+
+		return view;
+	}
+
+	/**
+	 * 绑定数据的操作 
+	 */
+	@Override
+	public void setBindData(AppInfo appInfo) {
+		appDes.setText(appInfo.des);
+		appName.setText(appInfo.name);
+		appSize.setText(Formatter.formatFileSize(GooglePlayApplication.context, appInfo.size));
+		star.setRating(appInfo.stars);
+
+	}
+}
